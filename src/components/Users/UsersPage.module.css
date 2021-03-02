@@ -1,0 +1,44 @@
+.personWrapper {
+    padding-top: 30px;
+}
+
+.person {
+    display: flex;
+}
+
+.personInfo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 15px;
+    width: 150px;
+}
+
+.personInfo img {
+    width: 50px;
+}
+
+.personStatus {
+    display: flex;
+    flex-direction: column;
+}
+
+.paginationUsers {
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+
+.paginationUsers span {
+    margin: 3px;
+    cursor: pointer;
+    border: solid darkgrey 2px;
+    border-radius: 5px;
+    padding: 2px;
+    color: darkslategrey;
+    background-color: antiquewhite;
+}
+
+.activePage  {
+    font-weight: bold;
+    font-size: 22px;
+}

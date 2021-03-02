@@ -1,0 +1,9 @@
+.dialogs {
+  padding: 15px;
+  display: grid;
+  grid-auto-rows: minmax(50px, auto);
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas:
+    "names messages"
+    "names addPost";
+}

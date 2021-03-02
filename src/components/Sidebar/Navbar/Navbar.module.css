@@ -1,0 +1,8 @@
+a {
+  color: indigo;
+  text-decoration: none;
+}
+
+.active {
+  color: goldenrod;
+}

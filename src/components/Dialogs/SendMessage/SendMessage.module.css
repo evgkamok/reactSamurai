@@ -1,0 +1,7 @@
+.addPostSection {
+  grid-area: addPost;
+}
+
+.addPostSection button {
+  margin-top: 10px;
+}

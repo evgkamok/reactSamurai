@@ -1,0 +1,13 @@
+.wrapper {
+    padding: 20px;
+}
+
+.serverError {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+}
+
+.rememberMeBlock {
+    display: flex;
+}

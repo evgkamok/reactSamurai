@@ -1,0 +1,8 @@
+.message {
+  color: blue;
+}
+
+.messagesList {
+  grid-area: messages;
+}
+
