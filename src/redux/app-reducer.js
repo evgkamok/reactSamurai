@@ -21,11 +21,9 @@ const appReducer = (state = initialState, action) => {
 
 const setAuthInitSuccess = () => ({type: SET_AUTH_INIT_SUCCESS})
 
-export const setAuthInitialize = () => (dispatch) => {
-  let promise = dispatch(getUserLoginData())
-  promise.then(() => {
-    dispatch(setAuthInitSuccess());
-  })
+export const setAuthInitialize = () => async (dispatch) => {
+  await dispatch(getUserLoginData())
+  dispatch(setAuthInitSuccess());
 }
 
 export default appReducer;

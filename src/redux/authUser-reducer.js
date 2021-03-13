@@ -36,21 +36,17 @@ const setUserLoginData = (userId, email, login, isAuthorized) => ({
 const setRememberMe = (isRememberMe) => ({type: SET_REMEMBER_ME, isRememberMe})
 
 
-export const getUserLoginData = () => (dispatch) => {
-  return authAPI.getUserLoginData()
-    .then(response => {
-      if (response.resultCode === 0) {
-        const {id, email, login} = response.data
-        dispatch(setUserLoginData(id, email, login, true));
-      }
-    })
-
+export const getUserLoginData = () => async dispatch => {
+  const response = await authAPI.getUserLoginData();
+  if (response.resultCode === 0) {
+    const {id, email, login} = response.data
+    dispatch(setUserLoginData(id, email, login, true));
+  }
 }
 
 
-export const loginUser = (email, password, isRememberMe) => (dispatch) => {
-  authAPI.loginUser(email, password, isRememberMe)
-    .then(response => {
+export const loginUser = (email, password, isRememberMe) => async (dispatch) => {
+  const response = await authAPI.loginUser(email, password, isRememberMe)
       if (response.data.resultCode === 0) {
         dispatch(getUserLoginData());
         dispatch(setRememberMe(isRememberMe));
@@ -59,18 +55,14 @@ export const loginUser = (email, password, isRememberMe) => (dispatch) => {
           dispatch(stopSubmit('login', {_error: response.data.messages[0]}))
         }
       }
-    })
 }
 
-export const logoutUser = () => (dispatch) => {
-  authAPI.logoutUser()
-    .then(response => {
+export const logoutUser = () => async dispatch => {
+  const response  = await authAPI.logoutUser();
       if (response.data.resultCode === 0) {
         dispatch(setUserLoginData(null, null, null, false));
         dispatch(setRememberMe(false));
       }
-    })
 }
-
 
 export default authorizeUserReducer;

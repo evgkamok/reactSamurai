@@ -7,9 +7,7 @@ import usersPageReducer from "./usersPage-reducer";
 import authorizeUserReducer from "./authUser-reducer";
 import newsPageReducer from "./newsPage-reducer";
 import thunkMiddleware from 'redux-thunk';
-import {reducer as formReducer } from "redux-form";
-
-// import { createStore, applyMiddleware, compose } from 'redux';
+import {reducer as formReducer} from "redux-form";
 
 const reducers = combineReducers({
   app: appReducer,
@@ -22,13 +20,10 @@ const reducers = combineReducers({
   form: formReducer
 });
 
+
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-// const store = createStore(reducers, applyMiddleware(thunkMiddleware));
-const store = createStore(reducers,composeEnhancers(applyMiddleware(thunkMiddleware)));
-
-
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+export default store;
 
 window.store = store;
-
-export default store;

@@ -5,11 +5,15 @@ import {setNewNewsAC, thunkCreateSetNewNews} from "../../redux/newsPage-reducer"
 import {withRouter} from "react-router-dom";
 
 let NewsContainer = (props) => {
-
+  // console.log(props.match)
   return (
     <div>
       <h1>Lolka</h1>
-      <News setNewNewsAC={props.setNewNewsAC} thunkNews={props.thunkCreateSetNewNews} match={props.match}/>
+      <News setNewNewsAC={props.setNewNewsAC}
+            thunkNews={props.thunkCreateSetNewNews}
+            match={props.match}
+            testProps={props.testProps}
+      />
     </div>
   )
 }
@@ -19,6 +23,7 @@ const mapStateToProps = (state) => {
     testProps: 'Test props'
   }
 }
+
 
 NewsContainer = connect(mapStateToProps, {setNewNewsAC, thunkCreateSetNewNews})(NewsContainer)
 NewsContainer = withRouter(NewsContainer);

@@ -1,6 +1,5 @@
 import React from 'react';
 import UsersPage from "./UsersPage";
-import Preloader from "../common/prelodaer/Preloader";
 import {connect} from "react-redux";
 import {
   requestUsers,
@@ -30,21 +29,10 @@ class UsersPageContainer extends React.Component {
 
   render() {
     return <>
-      {this.props.isFetching ? <Preloader/> : null}
-      <UsersPage
-        users={this.props.users}
-        countUsers={this.props.countUsers}
-        countUsersOnPage={this.props.countUsersOnPage}
-        currentPage={this.props.currentPage}
-        disableFollowButtonArray={this.props.disableFollowButtonArray}
-        follow={this.props.follow}
-        unFollow={this.props.unFollow}
-        onChangePage={this.onChangePage}
-      />
+      <UsersPage {...this.props} onChangePage={this.onChangePage}/>
     </>
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
@@ -56,7 +44,6 @@ const mapStateToProps = (state) => {
     disableFollowButtonArray: getDisableFollowButtonArray(state),
   }
 }
-
 
 export default compose(
   connect(mapStateToProps, {
