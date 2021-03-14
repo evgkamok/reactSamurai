@@ -14,7 +14,7 @@ import {
   getCountUsersOnPage,
   getCurrentPage,
   getDisableFollowButtonArray,
-  getIsFetching
+  getIsFetching, getSizePartPagination
 } from "../../redux/userPage-selectors";
 
 class UsersPageContainer extends React.Component {
@@ -40,6 +40,7 @@ const mapStateToProps = (state) => {
     users: getUsers(state),
     countUsers: getCountUsers(state),
     countUsersOnPage: getCountUsersOnPage(state),
+    sizePartPagination: getSizePartPagination(state),
     currentPage: getCurrentPage(state),
     disableFollowButtonArray: getDisableFollowButtonArray(state),
   }

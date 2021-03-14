@@ -1,7 +1,7 @@
 import React from 'react';
 import UsersPagination from "./UsersPagination";
 import Preloader from "../common/prelodaer/Preloader";
-import UsersPageList from "./UsersPageList";
+import UsersList from "./UsersList";
 
 const UsersPage = (props) => {
   return (
@@ -9,11 +9,12 @@ const UsersPage = (props) => {
       <UsersPagination countUsers={props.countUsers}
                        countUsersOnPage={props.countUsersOnPage}
                        currentPage={props.currentPage}
-                       onChangePage={props.onChangePage}/>
+                       onChangePage={props.onChangePage}
+                       sizePartPagination={props.sizePartPagination}/>
       {
         props.isFetching
           ? <Preloader/>
-          : <UsersPageList
+          : <UsersList
             users={props.users}
             countUsers={props.countUsers}
             countUsersOnPage={props.countUsersOnPage}

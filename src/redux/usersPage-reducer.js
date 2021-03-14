@@ -15,6 +15,7 @@ const initialState = {
   currentPage: 1,
   countUsers: 0,
   countUsersOnPage: 100,
+  sizePartPagination: 10,
   isFetching: false,
   disableFollowButtonArray: [],
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './UsersPage.module.css';
 import User from "./User";
 
-const UsersPageList = (props) => {
+const UsersList = (props) => {
   return (
     <div className={styles.usersWrapper}>
       {
@@ -23,4 +23,4 @@ const UsersPageList = (props) => {
   )
 }
 
-export default UsersPageList;
+export default UsersList;

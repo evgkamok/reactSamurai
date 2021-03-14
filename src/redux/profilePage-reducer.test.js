@@ -8,22 +8,20 @@ const state = {
   ]
 };
 
-
-it('lenght of post should be increase', () => {
-  let action = addPost('it-kama');
-  let newState = profilePageReducer(state,action);
+it('length of post should be increase', () => {
+  const action = addPost('it-kama');
+  const newState = profilePageReducer(state,action);
   expect(newState.postsData.length).toBe(4);
 })
 
-it('data of post ecual data from action', () => {
-  let action = addPost('it-kama');
-  let newState = profilePageReducer(state,action);
+it('data of post should be equally data from action', () => {
+  const action = addPost('it-kama');
+  const newState = profilePageReducer(state,action);
   expect(newState.postsData[3].message).toBe('it-kama');
 })
 
-it('after deleting, length of post data shold be decrement', () => {
-
+it('after deleting, length of post data should be decrement', () => {
   const action = deletePost(1);
-  let newState = profilePageReducer(state,action);
+  const newState = profilePageReducer(state,action);
   expect(newState.postsData.length).toBe(2)
 })
