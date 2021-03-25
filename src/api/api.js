@@ -38,7 +38,6 @@ export const userAPI = {
   unFollowRequest(userId) {
     return API.post(`follow/${userId}`).then(response => response.data)
   },
-
 }
 
 export const userProfile = {
@@ -50,6 +49,15 @@ export const userProfile = {
     return API.put(`profile/status`, {status})
   },
 
+  uploadPhoto(photoFile) {
+    const formData = new FormData();
+    formData.append('image', photoFile)
+    return API.put('/profile/photo', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  }
 }
 
 

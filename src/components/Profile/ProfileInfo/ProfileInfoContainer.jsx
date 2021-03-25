@@ -1,14 +1,19 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {setUserProfile, getUserStatusMessage, setUserStatusMessage} from "../../../redux/profilePage-reducer";
+import {
+  setUserProfile,
+  getUserStatusMessage,
+  setUserStatusMessage,
+  uploadPhotoFile
+} from "../../../redux/profilePage-reducer";
 import ProfileInfo from "./ProfileInfo";
 import {compose} from "redux";
 
 
 class ProfileInfoContainer extends React.Component {
 
-  componentDidMount() {
+  refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId && this.props.initSuccess && this.props.isAuthorized) {
       userId = this.props.userId;
@@ -17,9 +22,22 @@ class ProfileInfoContainer extends React.Component {
     this.props.getUserStatusMessage(userId)
   }
 
+  componentDidMount() {
+    this.refreshProfile();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.match.params.userId !== prevProps.match.params.userId) {
+      this.refreshProfile();
+    }
+  }
+
   render() {
-    return <ProfileInfo {...this.props} profile={this.props.profile} status={this.props.status}
-                        setUserStatusMessage={this.props.setUserStatusMessage}/>
+    return <ProfileInfo {...this.props}
+                        profile={this.props.profile}
+                        status={this.props.status}
+                        setUserStatusMessage={this.props.setUserStatusMessage}
+                        uploadPhotoFile={this.props.uploadPhotoFile}/>
   }
 }
 
@@ -29,12 +47,12 @@ const mapStateToProps = (state) => {
     status: state.profilePage.status,
     initSuccess: state.app.initSuccess,
     isAuthorized: state.authorizeUser.isAuthorized,
-    userId: state.authorizeUser.userId
+    userId: state.authorizeUser.userId,
   }
 }
 
 export default compose(
-  connect(mapStateToProps, {setUserProfile, setUserStatusMessage, getUserStatusMessage}),
+  connect(mapStateToProps, {setUserProfile, setUserStatusMessage, getUserStatusMessage, uploadPhotoFile}),
   withRouter
 )(ProfileInfoContainer)
 

@@ -43,10 +43,10 @@ class App extends React.Component {
   }
 }
 
-const mapDispatchToProps = (state) => {
+const mapDispatchToState = (state) => {
   return {
     initSuccess: state.app.initSuccess
   }
 }
 
-export default connect(mapDispatchToProps, {setAuthInitialize})(App);
+export default connect(mapDispatchToState, {setAuthInitialize})(App);

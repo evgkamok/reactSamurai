@@ -4,6 +4,7 @@ import noneAvatar from "../../assets/noneAvatar.png";
 import {NavLink} from "react-router-dom";
 
 const User = (props) => {
+
   const {userId, userPhotoSmall, userName, userFollowed, userStatus, disableFollowButtonArray, follow, unFollow} = props
   return (
     <div className={styles.user} key={userId}>
