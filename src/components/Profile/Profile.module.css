@@ -1,0 +1,12 @@
+.profileWrapper {
+    display: grid;
+    grid-template-areas:
+            "photo info"
+            "posts posts";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    padding: 25px;
+    font-size: 20px;
+    /*justify-items: center;*/
+    /*align-items: center;*/
+}

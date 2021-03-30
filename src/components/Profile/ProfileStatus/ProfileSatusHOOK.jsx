@@ -5,7 +5,7 @@ const ProfileStatusHook = (props) => {
   const [isEditMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(props.status);
 
-  useEffect( () => {
+  useEffect(() => {
     setStatus(props.status)
   }, [props.status])
 
@@ -21,26 +21,34 @@ const ProfileStatusHook = (props) => {
   const onStatusChange = (statusInput) => {
     setStatus(statusInput);
   }
+  if (props.isOwner) {
+    return (
+      <>
+        {!isEditMode &&
+        <div>
+          <span onDoubleClick={() => activateEditMode()}>{status || 'Click for setting status'}</span>
+        </div>
+        }
+        {isEditMode &&
+        <div>
+          <input autoFocus={true}
+                 type='text'
+                 value={status}
+                 onBlur={() => deactivateEditMode()}
+                 onChange={(event) => onStatusChange(event.currentTarget.value)}
+          />
+        </div>
+        }
+      </>
+    )
+  } else {
+    return (
+      <div>
+        <span>{status || 'User dont set status'}</span>
+      </div>
+    )
+  }
 
-  return (
-    <div>
-      {!isEditMode &&
-      <div>
-        <span onDoubleClick={() => activateEditMode()}>{status || 'Click for setting status'}</span>
-      </div>
-      }
-      {isEditMode &&
-      <div>
-        <input autoFocus={true}
-               type='text'
-               value={status}
-               onBlur={() => deactivateEditMode()}
-               onChange={(event) => onStatusChange(event.currentTarget.value)}
-        />
-      </div>
-      }
-    </div>
-  )
 }
 
 export default ProfileStatusHook;

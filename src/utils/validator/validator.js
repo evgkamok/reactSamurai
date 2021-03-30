@@ -1,6 +1,6 @@
-export const required = values => {
-  if (!values) {
-    return 'Error: is field is required'
+export const required = value => {
+  if (!value) {
+    return 'Error: field is required'
   }
   return undefined;
 }

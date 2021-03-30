@@ -5,7 +5,8 @@ import {
   setUserProfile,
   getUserStatusMessage,
   setUserStatusMessage,
-  uploadPhotoFile
+  uploadPhotoFile,
+  saveProfileData
 } from "../../../redux/profilePage-reducer";
 import ProfileInfo from "./ProfileInfo";
 import {compose} from "redux";
@@ -31,13 +32,15 @@ class ProfileInfoContainer extends React.Component {
       this.refreshProfile();
     }
   }
-
+  // props.match.params.userId
   render() {
-    return <ProfileInfo {...this.props}
+    return <ProfileInfo
+                        isOwner={!this.props.match.params.userId}
                         profile={this.props.profile}
                         status={this.props.status}
                         setUserStatusMessage={this.props.setUserStatusMessage}
-                        uploadPhotoFile={this.props.uploadPhotoFile}/>
+                        uploadPhotoFile={this.props.uploadPhotoFile}
+                        saveData={this.props.saveProfileData}/>
   }
 }
 
@@ -52,7 +55,8 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-  connect(mapStateToProps, {setUserProfile, setUserStatusMessage, getUserStatusMessage, uploadPhotoFile}),
+  connect(mapStateToProps, {
+    setUserProfile, setUserStatusMessage,getUserStatusMessage, uploadPhotoFile, saveProfileData}),
   withRouter
 )(ProfileInfoContainer)
 

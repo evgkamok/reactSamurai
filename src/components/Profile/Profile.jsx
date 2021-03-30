@@ -6,13 +6,13 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
-class Profile extends React.Component{
+class Profile extends React.Component {
 
   render() {
     return (
-      <div className={styles.profile}>
-        <ProfileInfoContainer />
-        <MyPostsContainer />
+      <div className={styles.profileWrapper}>
+        <ProfileInfoContainer/>
+        <MyPostsContainer/>
       </div>
     )
   }

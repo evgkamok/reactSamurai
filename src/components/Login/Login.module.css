@@ -1,5 +1,8 @@
-.wrapper {
-    padding: 20px;
+.loginWrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .serverError {
@@ -8,6 +11,6 @@
     color: red;
 }
 
-.rememberMeBlock {
+.rememberMe {
     display: flex;
 }

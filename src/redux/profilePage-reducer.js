@@ -1,4 +1,5 @@
 import {userAPI, userProfile} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -45,7 +46,7 @@ const profilePageReducer = (state = initialState, action) => {
     case UPLOAD_PHOTO_SUCCESS:
       return {
         ...state,
-        profile: {...state.profile, photos: action.photoFile}
+        profile: {...state.profile, photos: action.photoData}
       }
     default:
       return state;
@@ -56,7 +57,7 @@ export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
 export const getUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 export const deletePost = (id) => ({type: DELETE_POST, id});
-export const uploadPhotoSuccess = (photoFile) => ({type: UPLOAD_PHOTO_SUCCESS, photoFile});
+export const uploadPhotoSuccess = (photoData) => ({type: UPLOAD_PHOTO_SUCCESS, photoData});
 
 export const setUserProfile = (userId) => async dispatch => {
   const response = await userAPI.setUserProfile(userId);
@@ -82,5 +83,18 @@ export const uploadPhotoFile = (photoFile) => async dispatch => {
   }
 }
 
+export const saveProfileData = (profileData) => async (dispatch, getState) => {
+  const userId = getState().authorizeUser.userId;
+  const response = await userProfile.updateProfile(profileData);
+  if (response.data.resultCode === 0) {
+    dispatch(setUserProfile(userId))
+  } else {
+    console.log('Some error');
+    dispatch(stopSubmit('editProfileForm', ({'contacts': {'facebook': response.data.messages[0]}})))
+  }
+}
 
 export default profilePageReducer;
+
+
+

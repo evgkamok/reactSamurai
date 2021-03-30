@@ -49,9 +49,13 @@ export const userProfile = {
     return API.put(`profile/status`, {status})
   },
 
+  updateProfile(profileData) {
+    return API.put('profile', profileData)
+  },
+
   uploadPhoto(photoFile) {
     const formData = new FormData();
-    formData.append('image', photoFile)
+    formData.append('image', photoFile);
     return API.put('/profile/photo', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -59,5 +63,6 @@ export const userProfile = {
     })
   }
 }
+
 
 

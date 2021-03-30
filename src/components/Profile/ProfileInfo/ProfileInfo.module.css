@@ -1,54 +1,79 @@
-.profileInfoWrapper {
-    padding: 10px;
-    font-size: 20px;
-}
-
-.profileInfoData {
-    display: grid;
-    grid-template-areas: "photo info";
-    grid-template-columns: 1fr 1fr;
-}
-
-
-.profileInfoPhotoContainer {
+.profileInfoPhoto {
     grid-area: photo;
+    position: relative;
+
+
 }
 
-.profileInfoInformation {
+.profileData {
     grid-area: info;
 }
 
 .profileInfoPhoto {
     width: 300px;
     height: 300px;
+    margin-bottom: 50px;
 }
 
-ul  {
-    padding: 0;
-    margin: 0;
-}
-
-
-label {
-    width: 180px;
-    height: 50px;
+.uploadPhotoLabel {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100px;
+    height: 20px;
+    border: 3px solid #678cd6;
     border-radius: 4px;
-    text-align: center;
-    margin-top: 15px;
-    cursor: pointer;
-    display: block;
-    font: 14px/50px Tahoma;
-    transition: all 0.18s ease-in-out;
-    border: 5px solid #678cd6;
     color: #678cd6;
-    font-size: 25px;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
 }
 
-.uploadPhotoInput{
-    /*width: 0.1px;*/
-    /*height: 0.1px;*/
-    /*opacity: 0;*/
+
+.uploadPhotoInput {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
     overflow: hidden;
     position: absolute;
     z-index: -1;
+}
+
+
+.uploadPhotoButton {
+    opacity: 0;
+}
+
+.uploadPhotoButton:hover {
+    opacity: 1;
+    transition: 1s;
+}
+
+.profileInfoPhoto:hover+.uploadPhotoButton {
+    opacity: 1;
+    transition: 1s;
+}
+
+.inputField {
+    /*width: 350px;*/
+    display: flex;
+    justify-content: space-between;
+}
+
+form {
+    width: 350px;
+}
+
+.contact {
+    font-weight: bold;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+
+.serverError {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
 }

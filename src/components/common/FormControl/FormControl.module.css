@@ -1,6 +1,15 @@
+.error {
+    /*display: inline;*/
+}
+
 .error textarea{
     border: red solid 3px;
 }
+
+.error input{
+    border: red solid 3px;
+}
+
 .error span{
     color: red;
     font-weight: bold;

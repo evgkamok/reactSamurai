@@ -9,7 +9,7 @@ const maxLengthField15 = maxLengthValidatorCreate(15);
 const MyPostForm = (props) => {
 
   return (
-    <div>
+    <div className={styles.myposts}>
       <form onSubmit={props.handleSubmit}>
         <div>
           <Field component={TextArea}
@@ -27,8 +27,8 @@ const MyPostFormRedux = reduxForm({form: 'newPostForm'})(MyPostForm);
 
 const MyPosts = (props) => {
 
-  const addPost = (value) => {
-    props.addPost(value.newPostText)
+  const addPost = (formData) => {
+    props.addPost(formData.newPostText)
   }
 
   return (
