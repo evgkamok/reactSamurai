@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+form {
+    width: 190px;
+}
+
 .serverError {
     font-size: 24px;
     font-weight: bold;

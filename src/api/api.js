@@ -13,8 +13,8 @@ export const authAPI = {
     return API.get('auth/me').then(response => response.data)
   },
 
-  loginUser(email, password, rememberMe = false) {
-    return API.post('auth/login', {email, password, rememberMe})
+  loginUser(email, password, rememberMe = false, captcha) {
+    return API.post('auth/login', {email, password, rememberMe, captcha})
   },
 
   logoutUser() {
@@ -64,5 +64,8 @@ export const userProfile = {
   }
 }
 
-
-
+export const securityApi = {
+  getCaptcha() {
+    return API.get(`/security/get-captcha-url`)
+  }
+}
