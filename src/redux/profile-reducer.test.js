@@ -1,4 +1,4 @@
-import profilePageReducer, {addPost, deletePost} from "./profilePage-reducer";
+import profilePageReducer, {addPost, deletePost} from "./profile-reducer";
 
 const state = {
   postsData: [

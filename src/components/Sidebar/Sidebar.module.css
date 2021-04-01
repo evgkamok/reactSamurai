@@ -3,3 +3,10 @@
   background-color: antiquewhite;
   padding: 20px;
 }
+
+.titleFriendList {
+  display: block;
+  font-size: 20px;
+  margin: 20px auto;
+}
+

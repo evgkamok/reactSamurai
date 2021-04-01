@@ -1,5 +1,5 @@
-import profilePageReducer from './profilePage-reducer';
-import dialogsPageReducer from './dialogsPage-reducer';
+import profilePageReducer from './profile-reducer';
+import dialogsPageReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 
 const store = {

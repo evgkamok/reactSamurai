@@ -23,7 +23,7 @@ export const authAPI = {
 }
 
 export const userAPI = {
-  setUserProfile(userId) {
+  getUserProfile(userId) {
     return API.get(`profile/${userId}`)
   },
 

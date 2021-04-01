@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {required} from "../../utils/validator/validator";
 import {Input} from "../common/FormControl/FormsControl";
-import {loginUser} from "../../redux/authUser-reducer";
+import {loginUser} from "../../redux/auth-reducer";
 import styles from './Login.module.css'
 
 const LoginForm = (props) => {

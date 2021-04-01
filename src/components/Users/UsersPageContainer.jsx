@@ -5,7 +5,7 @@ import {
   requestUsers,
   follow,
   unFollow
-} from "../../redux/usersPage-reducer";
+} from "../../redux/users-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
@@ -15,7 +15,7 @@ import {
   getCurrentPage,
   getDisableFollowButtonArray,
   getIsFetching, getSizePartPagination
-} from "../../redux/userPage-selectors";
+} from "../../redux/users-selectors";
 
 class UsersPageContainer extends React.Component {
 

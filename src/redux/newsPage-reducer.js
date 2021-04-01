@@ -1,6 +1,5 @@
 import React from 'react'
 import {userAPI} from "../api/api";
-import {getUserProfile} from "./profilePage-reducer";
 
 const SET_NEW_NEWS = 'SET_NEW_NEWS'
 const newsText = 'If you want to start measuring performance in your app, pass a function to log results ' +

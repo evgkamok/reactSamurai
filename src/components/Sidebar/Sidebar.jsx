@@ -1,13 +1,14 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
-import Freindsbar from './Freindsbar/Freindsbar';
 import styles from './Sidebar.module.css';
+import FriendListContainer from "./FreindsList/FreindListContainer";
 
-const Sidebar = (props) => {
+const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
-      <Navbar />
-      <Freindsbar state={props.state.freindsbar}/>
+      <Navbar/>
+      <span className={styles.titleFriendList}>Friends</span>
+      <FriendListContainer />
     </div>
   )
 }

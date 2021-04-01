@@ -29,7 +29,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div className="app-wrapper">
           <HeaderContainer/>
-          <Sidebar state={this.props.state.sidebar}/>
+          <Sidebar/>
           <div className='app-wrapper-content'>
             <Route path='/dialogs' render={() => <DialogsPage/>}/>
             <Route path='/profile/:userId?' render={() => <Profile/>}/>

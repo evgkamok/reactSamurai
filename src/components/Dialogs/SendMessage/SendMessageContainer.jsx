@@ -1,5 +1,5 @@
 import SendMessage from './SendMessage';
-import {sendMessage} from '../../../redux/dialogsPage-reducer';
+import {sendMessage} from '../../../redux/dialogs-reducer';
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {

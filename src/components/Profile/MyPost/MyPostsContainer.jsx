@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {addPost} from '../../../redux/profilePage-reducer';
+import {addPost} from '../../../redux/profile-reducer';
 
 import Post from './Post/Post';
 import MyPosts from './MyPosts';
