@@ -14,7 +14,7 @@ const TOGGLE_DISABLE_BUTTON = 'TOGGLE_DISABLE_BUTTON';
 
 const initialState = {
   users: [] as Array<UserType>,
-  currentPage: 1,
+  currentPageNumber: 1,
   countUsers: 0,
   countUsersOnPage: 100,
   sizePartPagination: 10,
@@ -40,7 +40,7 @@ const usersPageReducer = (state = initialState, action: any): InitialStateType =
     case SET_USERS:
       return {...state, users: action.users,}
     case SET_CURRENT_PAGE:
-      return {...state, currentPage: action.pageNum}
+      return {...state, currentPageNumber: action.pageNum}
     case SET_COUNT_USERS:
       return {...state, countUsers: action.countUsers}
     case SET_FETCHING:

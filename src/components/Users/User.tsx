@@ -1,11 +1,26 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './UsersPage.module.css';
 import noneAvatar from "../../assets/noneAvatar.png";
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
 
-const User = (props) => {
+type Props = {
+  userId: number
+  userPhotoSmall: string | null
+  userName: string
+  userFollowed: boolean
+  userStatus: string
+  disableFollowButtonArray: Array<number>
+  follow: (userId: number) => void
+  unFollow: (userId: number) => void
+  className?: string
+}
 
-  const {userId, userPhotoSmall, userName, userFollowed, userStatus, disableFollowButtonArray, follow, unFollow} = props
+const User: FC<Props> = ({
+                           userId, userPhotoSmall,
+                           userName, userFollowed,
+                           userStatus, disableFollowButtonArray,
+                           follow, unFollow
+                         }) => {
   return (
     <div className={styles.user} key={userId}>
       <div className={styles.userInfo}>

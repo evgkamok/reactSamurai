@@ -1,6 +1,18 @@
 import React from 'react';
 
-class ProfileStatus extends React.Component {
+
+type Props = {
+  status: string
+  setUserStatusMessage: (status: string) => void
+}
+
+type State = {
+  isEditMode: boolean
+  status: string
+}
+
+
+class ProfileStatus extends React.Component<Props, State> {
   state = {
     isEditMode: false,
     status: this.props.status
@@ -19,13 +31,13 @@ class ProfileStatus extends React.Component {
     this.props.setUserStatusMessage(this.state.status)
   }
 
-  onStatusChange = (statusMessage) => {
+  onStatusChange = (statusMessage: string) => {
     this.setState({
       status: statusMessage
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.status !== this.props.status) {
       this.setState({
         status: this.props.status

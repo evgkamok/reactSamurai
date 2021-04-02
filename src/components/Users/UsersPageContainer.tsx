@@ -16,15 +16,35 @@ import {
   getDisableFollowButtonArray,
   getIsFetching, getSizePartPagination
 } from "../../redux/users-selectors";
+import {AppStateType} from "../../redux/redux-store";
+import {UserType} from "../../types/types";
 
-class UsersPageContainer extends React.Component {
+type MapStateProps = {
+  isFetching: boolean
+  users: Array<UserType>
+  countUsers: number
+  countUsersOnPage: number
+  sizePartPagination: number
+  currentPageNumber: number
+  disableFollowButtonArray: Array<number>
+}
 
-  onChangePage = (numberPage) => {
+type MapDispatchProps = {
+  follow: (userId: number) => void
+  unFollow: (userId: number) => void
+  getUsers: (countUsersOnPage: number, numberPage: number) => void
+}
+
+type Props = MapStateProps & MapDispatchProps
+
+class UsersPageContainer extends React.Component<Props> {
+
+  onChangePage = (numberPage: number) => {
     this.props.getUsers(this.props.countUsersOnPage, numberPage)
   }
 
   componentDidMount() {
-    this.props.getUsers(this.props.countUsersOnPage, this.props.currentPage)
+    this.props.getUsers(this.props.countUsersOnPage, this.props.currentPageNumber)
   }
 
   render() {
@@ -34,20 +54,20 @@ class UsersPageContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType): MapStateProps => {
   return {
     isFetching: getIsFetching(state),
     users: getUsers(state),
     countUsers: getCountUsers(state),
     countUsersOnPage: getCountUsersOnPage(state),
     sizePartPagination: getSizePartPagination(state),
-    currentPage: getCurrentPage(state),
+    currentPageNumber: getCurrentPage(state),
     disableFollowButtonArray: getDisableFollowButtonArray(state),
   }
 }
 
 export default compose(
-  connect(mapStateToProps, {
+  connect<MapStateProps, MapDispatchProps, null, AppStateType>(mapStateToProps, {
   follow,
   unFollow,
   getUsers: requestUsers}),
