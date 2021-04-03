@@ -1,6 +1,8 @@
-import {userAPI, userProfile} from "../api/api";
+import {ResultCodesEnum, userAPI, userProfile} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {PhotosType, PostType, ProfileType} from "../types/types";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./redux-store";
 
 
 const ADD_POST = 'ADD-POST';
@@ -21,8 +23,11 @@ const initialState = {
 }
 
 type InitialStateType = typeof initialState;
+type ActionsTypes = AddPostActionType | SetUserProfileActionType | SetUserStatusActionType | DeletePostActionType
+  | UploadPhotoSuccessActionType;
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
-const profilePageReducer = (state = initialState, action: any): InitialStateType => {
+const profilePageReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
     case ADD_POST:
       const newPost = {
@@ -58,11 +63,11 @@ const profilePageReducer = (state = initialState, action: any): InitialStateType
   }
 }
 
-type addPostActionType = {
+type AddPostActionType = {
   type: typeof ADD_POST
   newPostText: string
 }
-export const addPost = (newPostText: string): addPostActionType => ({type: ADD_POST, newPostText});
+export const addPost = (newPostText: string): AddPostActionType => ({type: ADD_POST, newPostText});
 
 type SetUserProfileActionType = {
   type: typeof SET_USER_PROFILE
@@ -91,38 +96,38 @@ export const uploadPhotoSuccess = (photoData: PhotosType): UploadPhotoSuccessAct
   photoData
 });
 
-export const setUserProfileThunk = (userId: number) => async (dispatch: any) => {
-  const response = await userAPI.getUserProfile(userId);
-  dispatch(setUserProfile(response.data));
+export const setUserProfileThunk = (userId: number): ThunkType => async (dispatch) => {
+  const userDataProfile = await userAPI.getUserProfile(userId)
+  dispatch(setUserProfile(userDataProfile))
 }
 
-export const getUserStatusMessage = (userId: number) => async (dispatch: any) => {
-  const response = await userProfile.getStatus(userId);
-  dispatch(setUserStatus(response.data))
+export const getUserStatusMessage = (userId: number): ThunkType => async (dispatch) => {
+  const statusMessage = await userProfile.getStatus(userId)
+  dispatch(setUserStatus(statusMessage))
 }
 
-export const setUserStatusMessage = (messageStatus: string) => async (dispatch: any) => {
+export const setUserStatusMessage = (messageStatus: string): ThunkType => async (dispatch) => {
   const response = await userProfile.updateStatus(messageStatus)
-  if (response.data.resultCode === 0) {
+  if (response.data.resultCode === ResultCodesEnum.Success) {
     dispatch(setUserStatus(messageStatus))
   }
 }
 
-export const uploadPhotoFile = (photoFile: any) => async (dispatch: any) => {
-  const response = await userProfile.uploadPhoto(photoFile);
-  if (response.data.resultCode === 0) {
-    dispatch(uploadPhotoSuccess(response.data.data.photos))
+export const uploadPhotoFile = (photoFile: any): ThunkType => async (dispatch) => {
+  const data = await userProfile.uploadPhoto(photoFile)
+  if (data.resultCode === ResultCodesEnum.Success) {
+    dispatch(uploadPhotoSuccess(data.data))
   }
 }
 
-export const saveProfileData = (profileData: ProfileType) => async (dispatch: any, getState: any) => {
-  const userId = getState().authorizeUser.userId;
-  const response = await userProfile.updateProfile(profileData);
-  if (response.data.resultCode === 0) {
-    dispatch(setUserProfile(userId))
+export const saveProfileData = (profileData: ProfileType): ThunkType => async (dispatch, getState) => {
+  const userId = getState().authorizeUser.userId
+  const response = await userProfile.updateProfile(profileData)
+  if (response.data.resultCode === ResultCodesEnum.Success && userId !== null) {
+    dispatch(setUserProfileThunk(userId))
   } else {
-    console.log('Some error');
-    dispatch(stopSubmit('editProfileForm', ({'contacts': {'facebook': response.data.messages[0]}})))
+    console.log('Some error')
+    // dispatch(stopSubmit('editProfileForm', ({'contacts': {'facebook': response.data.messages[0]}})))
   }
 }
 

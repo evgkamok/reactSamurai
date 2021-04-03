@@ -62,15 +62,9 @@ const usersPageReducer = (state = initialState, action: ActionsTypes): InitialSt
   }
 }
 
-type ActionsTypes =
-  FollowSuccessActionType
-  | UnFollowSuccessActionType
-  | SetUsersActionType
-  | SetCurrentPageActionType
-  |
-  SetCountUsersActionType
-  | SetFetchingActionType
-  | ToggleDisableButtonActionType
+type ActionsTypes = FollowSuccessActionType | UnFollowSuccessActionType | SetUsersActionType | SetCurrentPageActionType
+  | SetCountUsersActionType | SetFetchingActionType | ToggleDisableButtonActionType
+type ThunkType = ThunkAction<Promise<void>, () => AppStateType, unknown, ActionsTypes>
 
 type FollowSuccessActionType = {
   type: typeof FOLLOW
@@ -117,16 +111,14 @@ export const toggleDisableButton = (statusButtonDisable: boolean, buttonId: numb
   ({type: TOGGLE_DISABLE_BUTTON, statusButtonDisable, buttonId})
 
 
-type ThunkType = ThunkAction<Promise<void>, () => AppStateType, unknown, ActionsTypes>
-
 export const requestUsers = (countUsersOnPage: number, numberPage: number): ThunkType => {
   return async (dispatch) => {
-    dispatch(setFetching(true));
-    const response = await userAPI.getUsersData(countUsersOnPage, numberPage)
-    dispatch(setUsers(response.data.items));
-    dispatch(setCurrentPage(numberPage));
-    dispatch(setCountUsers(response.data.totalCount));
-    dispatch(setFetching(false));
+    dispatch(setFetching(true))
+    const data = await userAPI.getUsersData(countUsersOnPage, numberPage)
+    dispatch(setUsers(data.items))
+    dispatch(setCurrentPage(numberPage))
+    dispatch(setCountUsers(data.totalCount))
+    dispatch(setFetching(false))
   }
 }
 
