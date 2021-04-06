@@ -111,3 +111,16 @@ export const logoutUser = (): ThunkType => async (dispatch) => {
 }
 
 export default authorizeUserReducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
